@@ -3,12 +3,19 @@ const app = express();
 const mongoose = require("mongoose");
 require("dotenv/config");
 
-app.get("/", (req, res) => {
-  res.send("Hello world");
-});
+//import routes
+const authRoute = require("./routes/auth");
 
-mongoose.connect(process.env.DB_CONNECTION, { newUserUrlParser: true }, () =>
+//connect to DB
+mongoose.connect(process.env.DB_CONNECTION, { useNewUrlParser: true }, () =>
   console.log("Connected to Mongo!!")
 );
+
+//middleware
+app.use(express.json());
+
+//route middleware
+app.use("/api/user", authRoute);
+
 
 app.listen(3000);
