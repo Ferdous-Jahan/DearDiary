@@ -9,6 +9,7 @@ import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import IconButton from "@material-ui/core/IconButton";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import { Link } from "react-router-dom";
 
 interface Props {}
 
@@ -31,9 +32,14 @@ const useStyles = makeStyles((theme) => ({
   textField: {
     padding: "5px",
   },
+  linkContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 }));
 
-function Login({}: Props): ReactElement {
+function Login(props: Props): ReactElement {
   const classes = useStyles();
   return (
     <div className={classes.backgroundContainer}>
@@ -56,7 +62,7 @@ function Login({}: Props): ReactElement {
             <div>
               <TextField
                 className={classes.textField}
-                type="password"
+                type="password" //{values.showPassword ? 'text' : 'password'}
                 id="password"
                 InputProps={{
                   startAdornment: (
@@ -78,6 +84,14 @@ function Login({}: Props): ReactElement {
                   ),
                 }}
               />
+            </div>
+            <div className={classes.linkContainer}>
+              <div>
+                <p>Don't have an account? </p>
+              </div>
+              <div>
+                <Link to="/registration">Register Here!</Link>
+              </div>
             </div>
           </div>
         </Paper>
